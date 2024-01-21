@@ -42,6 +42,28 @@ namespace InventoryManagementSystem
             }
         }
 
+        void filterByCategory()
+
+        {
+            cnn = new MySqlConnection(connectionString);
+
+            try
+            {
+                cnn.Open();
+                string myquary = "select * from producttbl where ProductCat = '" + SearchCombo.SelectedValue.ToString() + "'";
+                MySqlDataAdapter da = new MySqlDataAdapter(myquary, cnn);
+                MySqlCommandBuilder builder = new MySqlCommandBuilder(da);
+                var ds = new DataSet();
+                da.Fill(ds);
+                ProductDataGV.DataSource = ds.Tables[0];
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error" + ex);
+            }
+        }
+
         void fillCategory()
         {
             cnn = new MySqlConnection(connectionString);
@@ -58,6 +80,8 @@ namespace InventoryManagementSystem
                 dt.Load(rdr);
                 cateCombo.ValueMember = "CategoryName";
                 cateCombo.DataSource = dt;
+                SearchCombo.ValueMember = "CategoryName";
+                SearchCombo.DataSource = dt;
                 cnn.Close();
             }
             catch (Exception ex)
@@ -65,6 +89,8 @@ namespace InventoryManagementSystem
                 MessageBox.Show("error" + ex);
             }
         }
+
+
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -83,7 +109,7 @@ namespace InventoryManagementSystem
             try
             {
                 cnn.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into producttbl values('" + ProductIdTb.Text + "','" + ProductNameTb.Text + "','" + ProductQtyTb.Text + "', '" + ProductPriceTb.Text + "', '" + DescriptionTb.Text + "', '" + cateCombo.SelectedValue.ToString()+ "')", cnn);
+                MySqlCommand cmd = new MySqlCommand("insert into producttbl values('" + ProductIdTb.Text + "','" + ProductNameTb.Text + "','" + ProductQtyTb.Text + "', '" + ProductPriceTb.Text + "', '" + DescriptionTb.Text + "', '" + cateCombo.SelectedValue.ToString() + "')", cnn);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Product Sussefully Added.");
                 cnn.Close();
@@ -162,6 +188,29 @@ namespace InventoryManagementSystem
             ProductPriceTb.Text = ProductDataGV.SelectedRows[0].Cells[3].Value.ToString();
             DescriptionTb.Text = ProductDataGV.SelectedRows[0].Cells[4].Value.ToString();
             cateCombo.Text = ProductDataGV.SelectedRows[0].Cells[5].Value.ToString();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            filterByCategory();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            populate();
+            ProductIdTb.Text = "";
+            ProductNameTb.Text = "";
+            ProductQtyTb.Text = "";
+            ProductPriceTb.Text = "";
+            DescriptionTb.Text = "";
+            cateCombo.Text = "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            HomeForm home = new HomeForm();
+            this.Hide();
+            home.Show();
         }
     }
 }

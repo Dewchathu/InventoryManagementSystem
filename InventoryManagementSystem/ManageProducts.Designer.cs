@@ -32,7 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             label2 = new Label();
@@ -55,6 +54,9 @@
             button1 = new Button();
             ProductDataGV = new DataGridView();
             label8 = new Label();
+            SearchCombo = new ComboBox();
+            button5 = new Button();
+            button6 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ProductDataGV).BeginInit();
@@ -220,6 +222,7 @@
             button4.TabIndex = 19;
             button4.Text = "Home";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -262,16 +265,21 @@
             // 
             // ProductDataGV
             // 
+            ProductDataGV.AllowUserToAddRows = false;
+            ProductDataGV.AllowUserToDeleteRows = false;
+            ProductDataGV.AllowUserToResizeColumns = false;
+            ProductDataGV.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ProductDataGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             ProductDataGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ProductDataGV.BackgroundColor = Color.White;
             ProductDataGV.BorderStyle = BorderStyle.None;
             ProductDataGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            ProductDataGV.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             ProductDataGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(81, 191, 164);
-            dataGridViewCellStyle2.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.Font = new Font("Lato Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(81, 191, 164);
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
@@ -280,26 +288,19 @@
             ProductDataGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.Font = new Font("Lato Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(192, 255, 192);
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             ProductDataGV.DefaultCellStyle = dataGridViewCellStyle3;
+            ProductDataGV.EditMode = DataGridViewEditMode.EditProgrammatically;
             ProductDataGV.EnableHeadersVisualStyles = false;
             ProductDataGV.GridColor = Color.White;
-            ProductDataGV.Location = new Point(354, 223);
+            ProductDataGV.Location = new Point(354, 253);
             ProductDataGV.MultiSelect = false;
             ProductDataGV.Name = "ProductDataGV";
             ProductDataGV.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            ProductDataGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             ProductDataGV.RowHeadersVisible = false;
             ProductDataGV.RowHeadersWidth = 51;
             ProductDataGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -307,7 +308,7 @@
             ProductDataGV.ShowCellToolTips = false;
             ProductDataGV.ShowEditingIcon = false;
             ProductDataGV.ShowRowErrors = false;
-            ProductDataGV.Size = new Size(751, 404);
+            ProductDataGV.Size = new Size(751, 458);
             ProductDataGV.TabIndex = 24;
             ProductDataGV.CellContentClick += ProductDataGV_CellContentClick;
             // 
@@ -316,11 +317,45 @@
             label8.AutoSize = true;
             label8.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(639, 173);
+            label8.Location = new Point(617, 155);
             label8.Name = "label8";
             label8.Size = new Size(171, 33);
             label8.TabIndex = 23;
             label8.Text = "Products List";
+            // 
+            // SearchCombo
+            // 
+            SearchCombo.FormattingEnabled = true;
+            SearchCombo.Location = new Point(549, 203);
+            SearchCombo.Name = "SearchCombo";
+            SearchCombo.Size = new Size(236, 32);
+            SearchCombo.TabIndex = 18;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(81, 191, 164);
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.White;
+            button5.Location = new Point(791, 200);
+            button5.Name = "button5";
+            button5.Size = new Size(92, 38);
+            button5.TabIndex = 19;
+            button5.Text = "Search";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(81, 191, 164);
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.White;
+            button6.Location = new Point(889, 200);
+            button6.Name = "button6";
+            button6.Size = new Size(95, 38);
+            button6.TabIndex = 19;
+            button6.Text = "Refresh";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // ManageProducts
             // 
@@ -330,10 +365,13 @@
             ClientSize = new Size(1164, 752);
             Controls.Add(ProductDataGV);
             Controls.Add(label8);
+            Controls.Add(button5);
+            Controls.Add(button6);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
+            Controls.Add(SearchCombo);
             Controls.Add(cateCombo);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -385,5 +423,8 @@
         private Button button1;
         private DataGridView ProductDataGV;
         private Label label8;
+        private ComboBox SearchCombo;
+        private Button button5;
+        private Button button6;
     }
 }

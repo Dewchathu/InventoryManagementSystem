@@ -50,14 +50,15 @@
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            label5 = new Label();
-            label7 = new Label();
-            label8 = new Label();
             label9 = new Label();
+            CountLb = new Label();
+            panel3 = new Panel();
             label10 = new Label();
+            AmountLb = new Label();
+            panel4 = new Panel();
             label11 = new Label();
+            DateLb = new Label();
+            button5 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CustomerDataGV).BeginInit();
@@ -166,12 +167,17 @@
             // 
             // CustomerDataGV
             // 
+            CustomerDataGV.AllowUserToAddRows = false;
+            CustomerDataGV.AllowUserToDeleteRows = false;
+            CustomerDataGV.AllowUserToResizeColumns = false;
+            CustomerDataGV.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             CustomerDataGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             CustomerDataGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             CustomerDataGV.BackgroundColor = Color.White;
             CustomerDataGV.BorderStyle = BorderStyle.None;
             CustomerDataGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            CustomerDataGV.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             CustomerDataGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(81, 191, 164);
@@ -190,6 +196,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             CustomerDataGV.DefaultCellStyle = dataGridViewCellStyle3;
+            CustomerDataGV.EditMode = DataGridViewEditMode.EditProgrammatically;
             CustomerDataGV.EnableHeadersVisualStyles = false;
             CustomerDataGV.GridColor = Color.White;
             CustomerDataGV.Location = new Point(350, 201);
@@ -237,6 +244,7 @@
             button4.TabIndex = 14;
             button4.Text = "Home";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -281,64 +289,11 @@
             // 
             panel2.BackColor = Color.FromArgb(81, 191, 164);
             panel2.Controls.Add(label9);
-            panel2.Controls.Add(label5);
+            panel2.Controls.Add(CountLb);
             panel2.Location = new Point(100, 623);
             panel2.Name = "panel2";
             panel2.Size = new Size(237, 109);
             panel2.TabIndex = 18;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(81, 191, 164);
-            panel3.Controls.Add(label10);
-            panel3.Controls.Add(label7);
-            panel3.Location = new Point(460, 623);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(237, 109);
-            panel3.TabIndex = 18;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(81, 191, 164);
-            panel4.Controls.Add(label11);
-            panel4.Controls.Add(label8);
-            panel4.Location = new Point(820, 623);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(237, 109);
-            panel4.TabIndex = 18;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(68, 41);
-            label5.Name = "label5";
-            label5.Size = new Size(88, 33);
-            label5.TabIndex = 0;
-            label5.Text = "Count";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(66, 41);
-            label7.Name = "label7";
-            label7.Size = new Size(112, 33);
-            label7.TabIndex = 0;
-            label7.Text = "Amount";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(80, 41);
-            label8.Name = "label8";
-            label8.Size = new Size(73, 33);
-            label8.TabIndex = 0;
-            label8.Text = "Date";
             // 
             // label9
             // 
@@ -351,6 +306,28 @@
             label9.TabIndex = 0;
             label9.Text = "Orders Count";
             // 
+            // CountLb
+            // 
+            CountLb.AutoSize = true;
+            CountLb.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
+            CountLb.ForeColor = Color.White;
+            CountLb.Location = new Point(68, 41);
+            CountLb.Name = "CountLb";
+            CountLb.Size = new Size(88, 33);
+            CountLb.TabIndex = 0;
+            CountLb.Text = "Count";
+            CountLb.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(81, 191, 164);
+            panel3.Controls.Add(label10);
+            panel3.Controls.Add(AmountLb);
+            panel3.Location = new Point(460, 623);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(237, 109);
+            panel3.TabIndex = 18;
+            // 
             // label10
             // 
             label10.AutoSize = true;
@@ -361,6 +338,28 @@
             label10.Size = new Size(143, 23);
             label10.TabIndex = 0;
             label10.Text = "Orders Amoubt";
+            // 
+            // AmountLb
+            // 
+            AmountLb.AutoSize = true;
+            AmountLb.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
+            AmountLb.ForeColor = Color.White;
+            AmountLb.Location = new Point(66, 41);
+            AmountLb.Name = "AmountLb";
+            AmountLb.Size = new Size(112, 33);
+            AmountLb.TabIndex = 0;
+            AmountLb.Text = "Amount";
+            AmountLb.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(81, 191, 164);
+            panel4.Controls.Add(label11);
+            panel4.Controls.Add(DateLb);
+            panel4.Location = new Point(820, 623);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(237, 109);
+            panel4.TabIndex = 18;
             // 
             // label11
             // 
@@ -373,12 +372,38 @@
             label11.TabIndex = 0;
             label11.Text = "Last Order Date";
             // 
+            // DateLb
+            // 
+            DateLb.AutoSize = true;
+            DateLb.Font = new Font("Lato", 16.1999989F, FontStyle.Bold);
+            DateLb.ForeColor = Color.White;
+            DateLb.Location = new Point(80, 41);
+            DateLb.Name = "DateLb";
+            DateLb.Size = new Size(73, 33);
+            DateLb.TabIndex = 0;
+            DateLb.Text = "Date";
+            DateLb.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(81, 191, 164);
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.White;
+            button5.Location = new Point(1048, 140);
+            button5.Name = "button5";
+            button5.Size = new Size(105, 38);
+            button5.TabIndex = 19;
+            button5.Text = "Refresh";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
             // ManageCustomers
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(1164, 752);
+            Controls.Add(button5);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -436,12 +461,13 @@
         private Button button1;
         private Panel panel2;
         private Label label9;
-        private Label label5;
+        private Label CountLb;
         private Panel panel3;
         private Label label10;
-        private Label label7;
+        private Label AmountLb;
         private Panel panel4;
         private Label label11;
-        private Label label8;
+        private Label DateLb;
+        private Button button5;
     }
 }

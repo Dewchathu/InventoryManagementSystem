@@ -74,6 +74,24 @@ namespace InventoryManagementSystem
             CustomerIdTb.Text = CustomerDataGV.SelectedRows[0].Cells[0].Value.ToString();
             CustomerNameTb.Text = CustomerDataGV.SelectedRows[0].Cells[1].Value.ToString();
             CustomerPhoneTb.Text = CustomerDataGV.SelectedRows[0].Cells[2].Value.ToString();
+
+            cnn.Open();
+            MySqlDataAdapter sda = new MySqlDataAdapter("select Count(*) from ordertbl where CustomerId = " + CustomerIdTb.Text + "", cnn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            CountLb.Text = dt.Rows[0][0].ToString();
+
+            MySqlDataAdapter sda1 = new MySqlDataAdapter("select Sum(TotalAmount) from ordertbl where CustomerId = " + CustomerIdTb.Text + "", cnn);
+            DataTable dt1 = new DataTable();
+            sda1.Fill(dt1);
+            AmountLb.Text = dt1.Rows[0][0].ToString();
+
+            MySqlDataAdapter sda2 = new MySqlDataAdapter("select Max(OrderDate) from ordertbl where CustomerId = " + CustomerIdTb.Text + "", cnn);
+            DataTable dt2 = new DataTable();
+            sda2.Fill(dt2);
+            DateLb.Text = dt2.Rows[0][0].ToString();
+
+            cnn.Close();
         }
 
         private void ManageCustomers_Load(object sender, EventArgs e)
@@ -126,6 +144,20 @@ namespace InventoryManagementSystem
                 MessageBox.Show("Cannot Open Connection");
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            HomeForm home = new HomeForm();
+            this.Hide();
+            home.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            CustomerIdTb.Text = "";
+            CustomerNameTb.Text = "";
+            CustomerPhoneTb.Text = "";
+        }
     }
-    
+
 }

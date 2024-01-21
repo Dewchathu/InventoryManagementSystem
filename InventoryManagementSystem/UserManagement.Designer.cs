@@ -51,6 +51,7 @@
             button4 = new Button();
             userDataGV = new DataGridView();
             label6 = new Label();
+            button6 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)userDataGV).BeginInit();
@@ -221,15 +222,21 @@
             button4.TabIndex = 3;
             button4.Text = "Home";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // userDataGV
             // 
+            userDataGV.AllowUserToAddRows = false;
+            userDataGV.AllowUserToDeleteRows = false;
+            userDataGV.AllowUserToResizeColumns = false;
+            userDataGV.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             userDataGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             userDataGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             userDataGV.BackgroundColor = Color.White;
             userDataGV.BorderStyle = BorderStyle.None;
             userDataGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            userDataGV.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             userDataGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(81, 191, 164);
@@ -248,6 +255,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             userDataGV.DefaultCellStyle = dataGridViewCellStyle3;
+            userDataGV.EditMode = DataGridViewEditMode.EditProgrammatically;
             userDataGV.EnableHeadersVisualStyles = false;
             userDataGV.GridColor = Color.White;
             userDataGV.Location = new Point(364, 212);
@@ -284,12 +292,26 @@
             label6.TabIndex = 0;
             label6.Text = "User List";
             // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(81, 191, 164);
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.White;
+            button6.Location = new Point(1057, 137);
+            button6.Name = "button6";
+            button6.Size = new Size(95, 38);
+            button6.TabIndex = 20;
+            button6.Text = "Refresh";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // UserManagement
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(1164, 752);
+            Controls.Add(button6);
             Controls.Add(userDataGV);
             Controls.Add(button4);
             Controls.Add(label6);
@@ -339,5 +361,6 @@
         private DataGridView userDataGV;
         private PictureBox pictureBox2;
         private Label label6;
+        private Button button6;
     }
 }

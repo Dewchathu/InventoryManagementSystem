@@ -131,5 +131,20 @@ namespace InventoryManagementSystem
                 MessageBox.Show("Cannot Open Connection" + ex);
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            HomeForm home = new HomeForm();
+            this.Hide();
+            home.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UnameTb.Text = "";
+            UfullNameTb.Text = "";
+            UpasswardTb.Text = "";
+            UphoneTb.Text = "";
+        }
     }
 }

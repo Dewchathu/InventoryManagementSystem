@@ -47,6 +47,7 @@
             categoryNameTb = new TextBox();
             label4 = new Label();
             CategoryIdTb = new TextBox();
+            button5 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)categoryDataGV).BeginInit();
@@ -101,12 +102,17 @@
             // 
             // categoryDataGV
             // 
+            categoryDataGV.AllowUserToAddRows = false;
+            categoryDataGV.AllowUserToDeleteRows = false;
+            categoryDataGV.AllowUserToResizeColumns = false;
+            categoryDataGV.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new Font("Lato", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             categoryDataGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             categoryDataGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             categoryDataGV.BackgroundColor = Color.White;
             categoryDataGV.BorderStyle = BorderStyle.None;
             categoryDataGV.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            categoryDataGV.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             categoryDataGV.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(81, 191, 164);
@@ -125,6 +131,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             categoryDataGV.DefaultCellStyle = dataGridViewCellStyle3;
+            categoryDataGV.EditMode = DataGridViewEditMode.EditProgrammatically;
             categoryDataGV.EnableHeadersVisualStyles = false;
             categoryDataGV.GridColor = Color.White;
             categoryDataGV.Location = new Point(364, 232);
@@ -172,6 +179,7 @@
             button4.TabIndex = 12;
             button4.Text = "Home";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -246,12 +254,26 @@
             CategoryIdTb.Size = new Size(238, 31);
             CategoryIdTb.TabIndex = 9;
             // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(81, 191, 164);
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.White;
+            button5.Location = new Point(1041, 141);
+            button5.Name = "button5";
+            button5.Size = new Size(105, 38);
+            button5.TabIndex = 16;
+            button5.Text = "Refresh";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
             // ManageCategories
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(1164, 752);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -294,5 +316,6 @@
         private TextBox categoryNameTb;
         private Label label4;
         private TextBox CategoryIdTb;
+        private Button button5;
     }
 }
